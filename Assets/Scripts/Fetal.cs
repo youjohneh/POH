@@ -25,7 +25,7 @@ public class Fetal : MonoBehaviour {
             charPanel.GetComponent<Fader>().duration = 30.0f;
             charPanel.GetComponent<Fader>().fadeIn();
             buttonA.SetActive(true);
-            buttonA.GetComponent<Fader>().fadeIn();
+            //buttonA.GetComponent<Fader>().fadeIn();
         }
     }
 }
