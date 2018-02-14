@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour {
     [Header("Sprites")]
     public SpriteRenderer masterSprite;
@@ -32,8 +33,14 @@ public class Movement : MonoBehaviour {
 
     public GameObject menu;
     public bool paused;
-	// Use this for initialization
-	void Start () {
+
+
+    public float timer;
+    public float threshold;
+    public bool idle;
+
+    // Use this for initialization
+    void Start () {
         masterSprite = this.GetComponent<SpriteRenderer>();
         body = this.GetComponent<Rigidbody2D>();
 
@@ -66,6 +73,11 @@ public class Movement : MonoBehaviour {
         if (!Input.anyKey && Input.GetAxis("Horizontal") == 0 && grounded)
         {
             masterSprite.sprite = s_still;
+            idle = true;
+        }
+        else
+        {
+            idle = false;
         }
         if (!grounded && !fetal)
         {
@@ -85,6 +97,20 @@ public class Movement : MonoBehaviour {
         //        return;
         //    }
         //}
+
+        if (idle)
+        {
+            timer += Time.deltaTime;
+            if (timer >= threshold)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+        else
+        {
+            timer = 0;
+            idle = false;
+        }
     }
 
 

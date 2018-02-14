@@ -59,7 +59,7 @@ public class DiaTrigger : MonoBehaviour {
         if (Other.gameObject == PlayerControl && triggered && !end)
         {
 
-            charPanel.GetComponent<Fader>().fadeOut();
+            //charPanel.GetComponent<Fader>().fadeOut();
             this.gameObject.SetActive(false);
             PlayerControl.GetComponent<Movement>().grounded = true;
 
@@ -72,6 +72,7 @@ public class DiaTrigger : MonoBehaviour {
         yield return new WaitForSeconds(clip.length);
         PlayerControl.GetComponent<Movement>().talking = false;
         PlayerControl.GetComponent<Movement>().stopped = false;
+        charPanel.GetComponent<Fader>().fadeOut();
 
 
     }
